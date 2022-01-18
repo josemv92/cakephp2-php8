@@ -15,6 +15,7 @@
  * @since         CakePHP(tm) v 2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Framework\TestSuite as PHPUnit_Framework_TestSuite;
 
 /**
  * AllLocalizationTest class
@@ -23,7 +24,7 @@
  *
  * @package       Cake.Test.Case
  */
-class AllLocalizationTest extends PHPUnit_Framework_TestSuite {
+class AllI18nTest extends PHPUnit_Framework_TestSuite {
 
 /**
  * suite method, defines tests for this suite.

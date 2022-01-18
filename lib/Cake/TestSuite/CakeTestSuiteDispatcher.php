@@ -16,6 +16,8 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+ use PHPUnit\Framework\TestCase as PHPUnit_TestCase;
+
 /**
  * Path to the tests directory of the app.
  */
@@ -149,7 +151,7 @@ class CakeTestSuiteDispatcher {
  * @return bool true if found, false otherwise
  */
 	public function loadTestFramework() {
-		if (class_exists('PHPUnit_Framework_TestCase')) {
+		if (class_exists(PHPUnit_TestCase::class)) {
 			return true;
 		}
 		$phpunitPath = 'phpunit' . DS . 'phpunit';

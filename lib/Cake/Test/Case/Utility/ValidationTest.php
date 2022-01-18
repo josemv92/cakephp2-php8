@@ -119,7 +119,7 @@ class ValidationTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->_appEncoding = Configure::read('App.encoding');
 		$this->_appLocale = array();
@@ -134,7 +134,7 @@ class ValidationTest extends CakeTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		Configure::write('App.encoding', $this->_appEncoding);
 		foreach ($this->_appLocale as $category => $locale) {
@@ -2294,7 +2294,7 @@ class ValidationTest extends CakeTestCase {
 /**
  * test pass through failure on postal
  *
- * @expectedException PHPUnit_Framework_Error
+ * @expectedException PHPUnit\Framework\Error
  * @return void
  */
 	public function testPassThroughMethodFailure() {
@@ -2304,7 +2304,7 @@ class ValidationTest extends CakeTestCase {
 /**
  * test the pass through calling of an alternate locale with postal()
  *
- * @expectedException PHPUnit_Framework_Error
+ * @expectedException PHPUnit\Framework\Error
  * @return void
  */
 	public function testPassThroughClassFailure() {

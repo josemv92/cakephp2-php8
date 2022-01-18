@@ -15,6 +15,7 @@
  * @since         CakePHP(tm) v 2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Framework\Error as PHPUnit_Framework_Error;
 
 App::uses('Controller', 'Controller');
 App::uses('ControllerAuthorize', 'Controller/Component/Auth');
@@ -33,7 +34,7 @@ class ControllerAuthorizeTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->controller = $this->getMock('Controller', array('isAuthorized'), array(), '', false);
 		$this->components = $this->getMock('ComponentCollection');
@@ -47,7 +48,7 @@ class ControllerAuthorizeTest extends CakeTestCase {
 /**
  * testControllerTypeError
  *
- * @expectedException PHPUnit_Framework_Error
+ * @expectedException PHPUnit\Framework\Error
  * @return void
  * @throws PHPUnit_Framework_Error
  */

@@ -14,6 +14,9 @@
  * @since         CakePHP(tm) v 1.2.0.4433
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Util\Diff as PHPUnit_Util_Diff;
+use PHPUnit\Framework\TestSuite as PHPUnit_Framework_TestSuite;
+use PHPUnit\Framework\Test as PHPUnit_Framework_Test;
 
 App::uses('CakeBaseReporter', 'TestSuite/Reporter');
 
@@ -278,7 +281,7 @@ class CakeHtmlReporter extends CakeBaseReporter {
 		if ((is_string($actualMsg) && is_string($expectedMsg)) || (is_array($actualMsg) && is_array($expectedMsg))) {
 
 			$diffs = "";
-			if (class_exists('PHPUnit_Util_Diff')) {
+			if (class_exists('PHPUnit\Util\Diff')) {
 				$diffs = PHPUnit_Util_Diff::diff($expectedMsg, $actualMsg);
 			} elseif (class_exists('SebastianBergmann\Diff\Differ')) {
 				$differ = new SebastianBergmann\Diff\Differ();

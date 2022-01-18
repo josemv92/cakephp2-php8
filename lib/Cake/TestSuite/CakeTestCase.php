@@ -19,6 +19,10 @@
 App::uses('CakeFixtureManager', 'TestSuite/Fixture');
 App::uses('CakeTestFixture', 'TestSuite/Fixture');
 
+use PHPUnit\Framework\TestCase as PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestResult as PHPUnit_Framework_TestResult;
+use PHPUnit\Runner\Version as PHPUnit_Runner_Version;
+
 /**
  * CakeTestCase class
  *
@@ -75,7 +79,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @return PHPUnit_Framework_TestResult
  * @throws InvalidArgumentException
  */
-	public function run(PHPUnit_Framework_TestResult $result = null) {
+	public function run(PHPUnit_Framework_TestResult $result = null): PHPUnit_Framework_TestResult {
 		$level = ob_get_level();
 
 		if (!empty($this->fixtureManager)) {
@@ -133,7 +137,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		if (empty($this->_configure)) {
@@ -152,7 +156,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		App::build($this->_pathRestore, App::RESET);
 		if (class_exists('ClassRegistry', false)) {
@@ -185,7 +189,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  *
  * @return void
  */
-	protected function assertPreConditions() {
+	protected function assertPreConditions(): void {
 		parent::assertPreConditions();
 		$this->startTest($this->getName());
 	}
@@ -195,7 +199,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  *
  * @return void
  */
-	protected function assertPostConditions() {
+	protected function assertPostConditions(): void {
 		parent::assertPostConditions();
 		$this->endTest($this->getName());
 	}
@@ -642,7 +646,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @deprecated 3.0.0 This is a compatibility wrapper for 1.x. It will be removed in 3.0
  * @return void
  */
-	protected function expectError($expected = false, $message = '') {
+	public function expectError($expected = false, $message = ''): void {
 		if (!$expected) {
 			$expected = 'Exception';
 		}
@@ -657,7 +661,7 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
  * @deprecated 3.0.0 This is a compatibility wrapper for 1.x. It will be removed in 3.0.
  * @return void
  */
-	public function expectException($name = 'Exception', $message = '') {
+	public function expectException($name = 'Exception', $message = ''): void {
 		$this->setExpectedException($name, $message);
 	}
 

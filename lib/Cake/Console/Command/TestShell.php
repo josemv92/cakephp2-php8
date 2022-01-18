@@ -279,7 +279,11 @@ class TestShell extends Shell {
 		restore_error_handler();
 		restore_error_handler();
 
-		$testCli = new CakeTestSuiteCommand('CakeTestLoader', $runnerArgs);
+		if (!empty($runnerArgs['case'])) {
+			$runnerArgs['case'] = CakeTestLoader::resolveTestFile($runnerArgs['case'], $runnerArgs);
+		}
+
+		$testCli = new CakeTestSuiteCommand($runnerArgs);
 		$testCli->run($options);
 	}
 

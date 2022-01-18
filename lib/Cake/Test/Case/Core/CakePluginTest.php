@@ -28,7 +28,7 @@ class CakePluginTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		App::build(array(
 			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
@@ -41,7 +41,7 @@ class CakePluginTest extends CakeTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		CakePlugin::unload();
 	}
@@ -170,7 +170,7 @@ class CakePluginTest extends CakeTestCase {
  * Tests that loading a missing routes file throws a warning
  *
  * @return void
- * @expectedException PHPUNIT_FRAMEWORK_ERROR_WARNING
+ * @expectedException PHPUNIT\Framework\Error\Warning
  */
 	public function testLoadMultipleWithDefaultsMissingFile() {
 		CakePlugin::load(array('TestPlugin', 'TestPluginTwo'), array('bootstrap' => true, 'routes' => true));

@@ -17,6 +17,8 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  * @package Cake.TestSuite
  */
+use PHPUnit\Runner\StandardTestSuiteLoader;
+use PHPUnit\Runner\TestSuiteLoader;
 
 /**
  * TestLoader for CakePHP Test suite.
@@ -25,19 +27,7 @@
  *
  * @package Cake.TestSuite
  */
-class CakeTestLoader extends PHPUnit_Runner_StandardTestSuiteLoader {
-
-/**
- * Load a file and find the first test case / suite in that file.
- *
- * @param string $filePath The file path to load
- * @param string $params Additional parameters
- * @return ReflectionClass
- */
-	public function load($filePath, $params = '') {
-		$file = $this->_resolveTestFile($filePath, $params);
-		return parent::load('', $file);
-	}
+class CakeTestLoader {
 
 /**
  * Convert path fragments used by CakePHP's test runner to absolute paths that can be fed to PHPUnit.
@@ -46,8 +36,8 @@ class CakeTestLoader extends PHPUnit_Runner_StandardTestSuiteLoader {
  * @param string $params Additional parameters.
  * @return string Converted path fragments.
  */
-	protected function _resolveTestFile($filePath, $params) {
-		$basePath = $this->_basePath($params) . DS . $filePath;
+	public static function resolveTestFile($filePath, $params) {
+		$basePath = self::_basePath($params) . DS . $filePath;
 		$ending = 'Test.php';
 		return (strpos($basePath, $ending) === (strlen($basePath) - strlen($ending))) ? $basePath : $basePath . $ending;
 	}

@@ -15,6 +15,7 @@
  * @since         CakePHP(tm) v 2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Framework\TestSuite as PHPUnit_Framework_TestSuite;
 
 /**
  * AllTests class
@@ -23,7 +24,7 @@
  *
  * @package       Cake.Test.Case
  */
-class AllTests extends PHPUnit_Framework_TestSuite {
+class AllTestsTest extends PHPUnit_Framework_TestSuite {
 
 /**
  * Suite define the tests for this suite

@@ -15,6 +15,8 @@
  * @since         CakePHP(tm) v 1.3
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Framework\Constraint\IsAnything as PHPUnit_Framework_Constraint_isAnything;
+use PHPUnit\Framework\Constraint\Not as PHPUnit_Framework_Constraint_Not;
 
 App::uses('ConsoleOutput', 'Console');
 App::uses('ConsoleInput', 'Console');
@@ -69,7 +71,7 @@ class ControllerTaskTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$out = $this->getMock('ConsoleOutput', array(), array(), '', false);
 		$in = $this->getMock('ConsoleInput', array(), array(), '', false);
@@ -101,7 +103,7 @@ class ControllerTaskTest extends CakeTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->Task);
 		ClassRegistry::flush();
 		App::build();

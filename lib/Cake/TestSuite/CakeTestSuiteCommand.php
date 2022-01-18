@@ -16,16 +16,18 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-if (!class_exists('PHPUnit_TextUI_Command')) {
-	require_once 'PHPUnit/TextUI/Command.php';
-}
-
 App::uses('CakeTestRunner', 'TestSuite');
 App::uses('CakeTestLoader', 'TestSuite');
 App::uses('CakeTestSuite', 'TestSuite');
 App::uses('CakeTestCase', 'TestSuite');
 App::uses('ControllerTestCase', 'TestSuite');
 App::uses('CakeTestModel', 'TestSuite/Fixture');
+
+use PHPUnit\TextUI\Command as PHPUnit_TextUI_Command;
+use PHPUnit\Framework\Test as PHPUnit_Framework_Test;
+use PHPUnit\TextUI\TestRunner as PHPUnit_TextUI_TestRunner;
+use PHPUnit\Framework\Exception as PHPUnit_Framework_Exception;
+use PHPUnit\Runner\StandardTestSuiteLoader;
 
 /**
  * Class to customize loading of test suites from CLI
@@ -37,17 +39,12 @@ class CakeTestSuiteCommand extends PHPUnit_TextUI_Command {
 /**
  * Construct method
  *
- * @param mixed $loader The loader instance to use.
  * @param array $params list of options to be used for this run
  * @throws MissingTestLoaderException When a loader class could not be found.
  */
-	public function __construct($loader, $params = array()) {
-		if ($loader && !class_exists($loader)) {
-			throw new MissingTestLoaderException(array('class' => $loader));
-		}
-		$this->arguments['loader'] = $loader;
+	public function __construct($params = array()) {
+		$this->arguments['loader'] = StandardTestSuiteLoader::class;
 		$this->arguments['test'] = $params['case'];
-		$this->arguments['testFile'] = $params;
 		$this->_params = $params;
 
 		$this->longOptions['fixture='] = 'handleFixture';
@@ -61,18 +58,19 @@ class CakeTestSuiteCommand extends PHPUnit_TextUI_Command {
  * @param bool $exit The exit mode.
  * @return void
  */
-	public function run(array $argv, $exit = true) {
-		$this->handleArguments($argv);
+	public function run(array $argv, bool $exit = true): int {
+		$this->handleArguments(
+			array_values($this->arguments)
+		);
 
-		$runner = $this->getRunner($this->arguments['loader']);
+		$runner = $this->getRunner(StandardTestSuiteLoader::class);
 
 		if (is_object($this->arguments['test']) &&
 			$this->arguments['test'] instanceof PHPUnit_Framework_Test) {
 			$suite = $this->arguments['test'];
 		} else {
 			$suite = $runner->getTest(
-				$this->arguments['test'],
-				$this->arguments['testFile']
+				$this->arguments['test']
 			);
 		}
 
@@ -95,7 +93,7 @@ class CakeTestSuiteCommand extends PHPUnit_TextUI_Command {
 		unset($this->arguments['testFile']);
 
 		try {
-			$result = $runner->doRun($suite, $this->arguments, false);
+			$result = $runner->run($suite, $this->arguments, [], false);
 		} catch (PHPUnit_Framework_Exception $e) {
 			print $e->getMessage() . "\n";
 		}
@@ -120,7 +118,7 @@ class CakeTestSuiteCommand extends PHPUnit_TextUI_Command {
  * @return CakeTestRunner
  */
 	public function getRunner($loader) {
-		return new CakeTestRunner($loader, $this->_params);
+		return new CakeTestRunner(new $loader, $this->_params);
 	}
 
 /**

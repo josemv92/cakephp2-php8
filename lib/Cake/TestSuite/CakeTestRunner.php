@@ -15,9 +15,6 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-if (!class_exists('PHPUnit_TextUI_TestRunner')) {
-	require_once 'PHPUnit/TextUI/TestRunner.php';
-}
 if (class_exists('SebastianBergmann\CodeCoverage\CodeCoverage')) {
 	class_alias('SebastianBergmann\CodeCoverage\CodeCoverage', 'PHP_CodeCoverage');
 	class_alias('SebastianBergmann\CodeCoverage\Report\Text', 'PHP_CodeCoverage_Report_Text');
@@ -28,13 +25,26 @@ if (class_exists('SebastianBergmann\CodeCoverage\CodeCoverage')) {
 }
 
 App::uses('CakeFixtureManager', 'TestSuite/Fixture');
+use PHPUnit\TextUI\TestRunner;
+use PHPUnit\Framework\Test as PHPUnit_Framework_Test;
+use PHPUnit\Framework\TestResult as PHPUnit_Framework_TestResult;
 
 /**
  * A custom test runner for CakePHP's use of PHPUnit.
  *
  * @package       Cake.TestSuite
  */
-class CakeTestRunner extends PHPUnit_TextUI_TestRunner {
+class CakeTestRunner {
+
+	protected $runner = null;
+
+	public function __call(string $method, array $arguments) {
+		if (method_exists($this->runner, $method)) {
+			return $this->runner->{$method}(...$arguments);
+		}
+
+		throw new BadMethodCallException('Method ' . __CLASS__ . '::' . $method . ' does not exist');
+	}
 
 /**
  * Lets us pass in some options needed for CakePHP's webrunner.
@@ -43,7 +53,7 @@ class CakeTestRunner extends PHPUnit_TextUI_TestRunner {
  * @param array $params list of options to be used for this run
  */
 	public function __construct($loader, $params) {
-		parent::__construct($loader);
+		$this->runner = new TestRunner($loader);
 		$this->_params = $params;
 	}
 
@@ -73,7 +83,7 @@ class CakeTestRunner extends PHPUnit_TextUI_TestRunner {
 			}
 		}
 
-		$return = parent::doRun($suite, $arguments, $exit);
+		$return = $this->runner->doRun($suite, $arguments, $exit);
 		$fixture->shutdown();
 		return $return;
 	}

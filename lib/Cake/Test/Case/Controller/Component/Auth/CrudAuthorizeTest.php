@@ -34,7 +34,7 @@ class CrudAuthorizeTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		Configure::write('Routing.prefixes', array());
 		Router::reload();
@@ -60,7 +60,7 @@ class CrudAuthorizeTest extends CakeTestCase {
 /**
  * test authorize() without a mapped action, ensure an error is generated.
  *
- * @expectedException PHPUnit_Framework_Error_Warning
+ * @expectedException PHPUnit\Framework\Error\Warning
  * @return void
  */
 	public function testAuthorizeNoMappedAction() {

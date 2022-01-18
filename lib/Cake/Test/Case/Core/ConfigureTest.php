@@ -17,6 +17,7 @@
  * @since         CakePHP(tm) v 1.2.0.5432
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Framework\Error as PHPUnit_Framework_Error;
 
 App::uses('PhpReader', 'Configure');
 
@@ -32,7 +33,7 @@ class ConfigureTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		Configure::write('Cache.disable', true);
 		App::build();
@@ -44,7 +45,7 @@ class ConfigureTest extends CakeTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		if (file_exists(TMP . 'cache' . DS . 'persistent' . DS . 'cake_core_core_paths')) {
 			unlink(TMP . 'cache' . DS . 'persistent' . DS . 'cake_core_core_paths');
@@ -432,7 +433,7 @@ class ConfigureTest extends CakeTestCase {
  *
  * @return void
  */
-	public function testReaderSetup() {
+	public function testReadersetUp(): void {
 		$reader = new PhpReader();
 		Configure::config('test', $reader);
 		$configured = Configure::configured();
@@ -449,7 +450,7 @@ class ConfigureTest extends CakeTestCase {
 /**
  * test reader() throwing exceptions on missing interface.
  *
- * @expectedException PHPUnit_Framework_Error
+ * @expectedException PHPUnit\Framework\Error
  * @return void
  * @throws PHPUnit_Framework_Error
  */

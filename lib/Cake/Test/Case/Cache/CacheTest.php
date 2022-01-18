@@ -15,6 +15,7 @@
  * @since         CakePHP(tm) v 1.2.0.5432
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Framework\Error as PHPUnit_Framework_Error;
 
 App::uses('Cache', 'Cache');
 
@@ -32,7 +33,7 @@ class CacheTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->_cacheDisable = Configure::read('Cache.disable');
 		Configure::write('Cache.disable', false);
@@ -46,7 +47,7 @@ class CacheTest extends CakeTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		Cache::drop('latest');
 		Cache::drop('page');
@@ -128,7 +129,7 @@ class CacheTest extends CakeTestCase {
  *
  * Test that the cache class doesn't cause fatal errors with a partial path
  *
- * @expectedException PHPUnit_Framework_Error_Warning
+ * @expectedException \PHPUnit\Framework\Error\Warning
  * @return void
  */
 	public function testInvalidConfig() {

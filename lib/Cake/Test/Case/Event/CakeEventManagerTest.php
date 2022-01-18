@@ -13,6 +13,7 @@
  * @since		  CakePHP v 2.1
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Runner\Version as PHPUnit_Runner_Version;
 
 App::uses('CakeEvent', 'Event');
 App::uses('CakeEventManager', 'Event');

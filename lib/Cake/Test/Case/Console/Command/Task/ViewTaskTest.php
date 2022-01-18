@@ -17,6 +17,7 @@
  * @since         CakePHP v 1.2.0.7726
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Framework\Constraint\IsAnything as PHPUnit_Framework_Constraint_isAnything;
 
 App::uses('ShellDispatcher', 'Console');
 App::uses('ConsoleOutput', 'Console');
@@ -184,7 +185,7 @@ class ViewTaskTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$out = $this->getMock('ConsoleOutput', array(), array(), '', false);
 		$in = $this->getMock('ConsoleInput', array(), array(), '', false);
@@ -208,7 +209,7 @@ class ViewTaskTest extends CakeTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->Task, $this->Dispatch);
 	}

@@ -18,6 +18,8 @@
 
 require_once dirname(__FILE__) . DS . 'ModelTestBase.php';
 
+use PHPUnit\Framework\Error as PHPUnit_Framework_Error;
+
 /**
  * ModelValidationTest
  *
@@ -30,7 +32,7 @@ class ModelValidationTest extends BaseModelTest {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		Configure::write('Config.language', 'eng');
 	}
@@ -772,7 +774,7 @@ class ModelValidationTest extends BaseModelTest {
  * Test that missing validation methods trigger errors in development mode.
  * Helps to make development easier.
  *
- * @expectedException PHPUnit_Framework_Error
+ * @expectedException PHPUnit\Framework\Error
  * @return void
  */
 	public function testMissingValidationErrorTriggering() {
@@ -2226,7 +2228,7 @@ class ModelValidationTest extends BaseModelTest {
 /**
  * Test that type hint exception is thrown
  *
- * @expectedException PHPUnit_Framework_Error
+ * @expectedException PHPUnit\Framework\Error
  * @return void
  * @throws PHPUnit_Framework_Error
  */

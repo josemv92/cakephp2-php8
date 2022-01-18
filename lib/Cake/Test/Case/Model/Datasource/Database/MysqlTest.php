@@ -15,6 +15,7 @@
  * @since         CakePHP(tm) v 1.2.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
+use PHPUnit\Framework\Error as PHPUnit_Framework_Error;
 
 App::uses('Model', 'Model');
 App::uses('AppModel', 'Model');
@@ -60,7 +61,7 @@ class MysqlTest extends CakeTestCase {
  *
  * @return void
  */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Dbo = ConnectionManager::getDataSource('test');
 		if (!($this->Dbo instanceof Mysql)) {
@@ -76,7 +77,7 @@ class MysqlTest extends CakeTestCase {
  *
  * @return void
  */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 		unset($this->model);
 		ClassRegistry::flush();
@@ -2883,7 +2884,7 @@ SQL;
 /**
  * testDropSchemaNoSchema method
  *
- * @expectedException PHPUnit_Framework_Error
+ * @expectedException PHPUnit\Framework\Error
  * @return void
  * @throws PHPUnit_Framework_Error
  */
@@ -3232,7 +3233,7 @@ SQL;
 /**
  * testBuildColumnBadType method
  *
- * @expectedException PHPUnit_Framework_Error
+ * @expectedException PHPUnit\Framework\Error
  * @return void
  */
 	public function testBuildColumnBadType() {

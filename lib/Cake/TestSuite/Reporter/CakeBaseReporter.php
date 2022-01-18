@@ -14,10 +14,10 @@
  * @since         CakePHP(tm) v 1.3
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
-
-if (!class_exists('PHPUnit_TextUI_ResultPrinter')) {
-	require_once 'PHPUnit/TextUI/ResultPrinter.php';
-}
+use PHPUnit\TextUI\ResultPrinter as PHPUnit_TextUI_ResultPrinter;
+use PHPUnit\Framework\TestResult as PHPUnit_Framework_TestResult;
+use PHPUnit\Framework\AssertionFailedError as PHPUnit_Framework_AssertionFailedError;
+use PHPUnit\Framework\TestSuite as PHPUnit_Framework_TestSuite;
 
 /**
  * CakeBaseReporter contains common reporting features used in the CakePHP Test suite

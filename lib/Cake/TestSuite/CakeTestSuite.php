@@ -17,6 +17,7 @@
  */
 
 App::uses('Folder', 'Utility');
+use PHPUnit\Framework\TestSuite as PHPUnit_Framework_TestSuite;
 
 /**
  * A class to contain test cases and run them with shared fixtures
