@@ -2294,20 +2294,20 @@ class ValidationTest extends CakeTestCase {
 /**
  * test pass through failure on postal
  *
- * @expectedException PHPUnit\Framework\Error
  * @return void
  */
 	public function testPassThroughMethodFailure() {
+		$this->expectException('\PHPUnit\Framework\Error');
 		Validation::phone('text', null, 'testNl');
 	}
 
 /**
  * test the pass through calling of an alternate locale with postal()
  *
- * @expectedException PHPUnit\Framework\Error
  * @return void
  */
 	public function testPassThroughClassFailure() {
+		$this->expectException('\PHPUnit\Framework\Error');
 		Validation::postal('text', null, 'AUTOFAIL');
 	}
 
@@ -2405,10 +2405,10 @@ class ValidationTest extends CakeTestCase {
 /**
  * testMimeTypeFalse method
  *
- * @expectedException CakeException
  * @return void
  */
 	public function testMimeTypeFalse() {
+		$this->expectException('CakeException');
 		$image = CORE_PATH . 'Cake' . DS . 'Test' . DS . 'test_app' . DS . 'webroot' . DS . 'img' . DS . 'cake.power.gif';
 		$File = new File($image, false);
 		$this->skipIf($File->mime(), 'mimeType can be determined, no Exception will be thrown');

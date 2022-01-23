@@ -1014,10 +1014,10 @@ TEXT;
 /**
  * Test getting an invalid helper
  *
- * @expectedException RunTimeException
  * @return void
  */
 	public function testGetInvalidHelper() {
+		$this->expectException('RuntimeException');
 		$this->Shell->helper("tomato");
 	}
 

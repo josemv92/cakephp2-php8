@@ -88,7 +88,7 @@ class CakeTestSuiteDispatcher {
 /**
  * reporter instance used for the request
  *
- * @var CakeBaseReporter
+ * @var ResultPrinter
  */
 	protected static $_Reporter = null;
 

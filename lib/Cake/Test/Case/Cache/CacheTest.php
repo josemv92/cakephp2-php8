@@ -72,10 +72,10 @@ class CacheTest extends CakeTestCase {
 /**
  * testConfigInvalidEngine method
  *
- * @expectedException CacheException
  * @return void
  */
 	public function testConfigInvalidEngine() {
+		$this->expectException('CacheException');
 		$settings = array('engine' => 'Imaginary');
 		Cache::config('imaginary', $settings);
 	}
@@ -129,10 +129,10 @@ class CacheTest extends CakeTestCase {
  *
  * Test that the cache class doesn't cause fatal errors with a partial path
  *
- * @expectedException \PHPUnit\Framework\Error\Warning
  * @return void
  */
 	public function testInvalidConfig() {
+		$this->expectException('\PHPUnit\Framework\Error\Warning');
 		// In debug mode it would auto create the folder.
 		$debug = Configure::read('debug');
 		Configure::write('debug', 0);
@@ -165,10 +165,10 @@ class CacheTest extends CakeTestCase {
 /**
  * test that trying to configure classes that don't extend CacheEngine fail.
  *
- * @expectedException CacheException
  * @return void
  */
 	public function testAttemptingToConfigureANonCacheEngineClass() {
+		$this->expectException('CacheException');
 		$this->getMock('StdClass', array(), array(), 'RubbishEngine');
 		Cache::config('Garbage', array(
 			'engine' => 'Rubbish'
@@ -309,10 +309,10 @@ class CacheTest extends CakeTestCase {
 /**
  * testGroupConfigsThrowsException method
  *
- * @expectedException CacheException
  * @return void
  */
 	public function testGroupConfigsThrowsException() {
+		$this->expectException('CacheException');
 		Cache::groupConfigs('bogus');
 	}
 

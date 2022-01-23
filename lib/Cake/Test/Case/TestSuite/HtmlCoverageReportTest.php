@@ -19,7 +19,8 @@
  */
 
 App::uses('HtmlCoverageReport', 'TestSuite/Coverage');
-App::uses('CakeBaseReporter', 'TestSuite/Reporter');
+
+use PHPUnit\TextUI\ResultPrinter;
 
 /**
  * HtmlCoverageReportTest
@@ -39,7 +40,7 @@ class HtmlCoverageReportTest extends CakeTestCase {
 			'Plugin' => array(CAKE . 'Test' . DS . 'test_app' . DS . 'Plugin' . DS)
 		), App::RESET);
 		CakePlugin::load(array('TestPlugin'));
-		$reporter = new CakeBaseReporter();
+		$reporter = new ResultPrinter();
 		$reporter->params = array('app' => false, 'plugin' => false, 'group' => false);
 		$coverage = array();
 		$this->Coverage = new HtmlCoverageReport($coverage, $reporter);

@@ -287,10 +287,10 @@ class ConfigureTest extends CakeTestCase {
 /**
  * testLoad method
  *
- * @expectedException RuntimeException
  * @return void
  */
 	public function testLoadExceptionOnNonExistantFile() {
+		$this->expectException('RuntimeException');
 		Configure::config('test', new PhpReader());
 		Configure::load('non_existing_configuration_file', 'test');
 	}
@@ -450,11 +450,11 @@ class ConfigureTest extends CakeTestCase {
 /**
  * test reader() throwing exceptions on missing interface.
  *
- * @expectedException PHPUnit\Framework\Error
  * @return void
  * @throws PHPUnit_Framework_Error
  */
 	public function testReaderExceptionOnIncorrectClass() {
+		$this->expectException('PHPUnit_Framework_Error');
 		$reader = new StdClass();
 
 		try {
@@ -479,10 +479,10 @@ class ConfigureTest extends CakeTestCase {
 /**
  * testDumpNoAdapter
  *
- * @expectedException ConfigureException
  * @return void
  */
 	public function testDumpNoAdapter() {
+		$this->expectException('ConfigureException');
 		Configure::dump(TMP . 'test.php', 'does_not_exist');
 	}
 

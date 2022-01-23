@@ -565,10 +565,10 @@ class AuthComponentTest extends CakeTestCase {
 	}
 
 /**
- * @expectedException CakeException
  * @return void
  */
 	public function testIsAuthorizedMissingFile() {
+		$this->expectException('CakeException');
 		$this->Controller->Auth->authorize = 'Missing';
 		$this->Controller->Auth->isAuthorized(array('User' => array('id' => 1)));
 	}
@@ -643,10 +643,10 @@ class AuthComponentTest extends CakeTestCase {
 	}
 
 /**
- * @expectedException CakeException
  * @return void
  */
 	public function testLoadAuthenticateNoFile() {
+		$this->expectException('CakeException');
 		$this->Controller->Auth->authenticate = 'Missing';
 		$this->Controller->Auth->identify($this->Controller->request, $this->Controller->response);
 	}
@@ -1152,10 +1152,10 @@ class AuthComponentTest extends CakeTestCase {
 
 /**
  * Throw ForbiddenException if AuthComponent::$unauthorizedRedirect set to false
- * @expectedException ForbiddenException
  * @return void
  */
 	public function testForbiddenException() {
+		$this->expectException('ForbiddenException');
 		$url = '/party/on';
 		$this->Auth->request = $CakeRequest = new CakeRequest($url);
 		$this->Auth->request->addParams(Router::parse($url));
@@ -1736,11 +1736,11 @@ class AuthComponentTest extends CakeTestCase {
 /**
  * testStatelessAuthNoRedirect method
  *
- * @expectedException UnauthorizedException
- * @expectedExceptionCode 401
  * @return void
  */
 	public function testStatelessAuthNoRedirect() {
+		$this->expectException('UnauthorizedException');
+		$this->expectExceptionCode(401);
 		if (CakeSession::id()) {
 			session_destroy();
 			CakeSession::$id = null;

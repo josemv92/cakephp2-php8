@@ -60,7 +60,7 @@ class CakeTestSuiteCommand extends PHPUnit_TextUI_Command {
  */
 	public function run(array $argv, bool $exit = true): int {
 		$this->handleArguments(
-			array_values($this->arguments)
+			array_merge(array_values($this->arguments), $argv)
 		);
 
 		$runner = $this->getRunner(StandardTestSuiteLoader::class);

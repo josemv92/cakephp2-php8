@@ -752,10 +752,10 @@ class CakeNumberTest extends CakeTestCase {
 /**
  * testFromReadableSize
  *
- * @expectedException CakeException
  * @return void
  */
 	public function testFromReadableSizeException() {
+		$this->expectException('CakeException');
 		$this->Number->fromReadableSize('bogus', false);
 	}
 

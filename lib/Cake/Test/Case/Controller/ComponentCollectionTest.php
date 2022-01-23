@@ -115,10 +115,10 @@ class ComponentCollectionTest extends CakeTestCase {
 /**
  * test missingcomponent exception
  *
- * @expectedException MissingComponentException
  * @return void
  */
 	public function testLoadMissingComponent() {
+		$this->expectException('MissingComponentException');
 		$this->Components->load('ThisComponentShouldAlwaysBeMissing');
 	}
 

@@ -48,11 +48,11 @@ class ControllerAuthorizeTest extends CakeTestCase {
 /**
  * testControllerTypeError
  *
- * @expectedException PHPUnit\Framework\Error
  * @return void
  * @throws PHPUnit_Framework_Error
  */
 	public function testControllerTypeError() {
+		$this->expectException('\PHPUnit\Framework\Error');
 		try {
 			$this->auth->controller(new StdClass());
 			$this->fail('No exception thrown');
@@ -64,10 +64,10 @@ class ControllerAuthorizeTest extends CakeTestCase {
 /**
  * testControllerErrorOnMissingMethod
  *
- * @expectedException CakeException
  * @return void
  */
 	public function testControllerErrorOnMissingMethod() {
+		$this->expectException('CakeException');
 		$this->auth->controller(new Controller());
 	}
 

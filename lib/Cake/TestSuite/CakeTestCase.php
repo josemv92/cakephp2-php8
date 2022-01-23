@@ -654,18 +654,6 @@ abstract class CakeTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 /**
- * Compatibility wrapper function for setExpectedException
- *
- * @param mixed $name The name of the expected Exception.
- * @param string $message the text to display if the assertion is not correct
- * @deprecated 3.0.0 This is a compatibility wrapper for 1.x. It will be removed in 3.0.
- * @return void
- */
-	public function expectException($name = 'Exception', $message = ''): void {
-		$this->setExpectedException($name, $message);
-	}
-
-/**
  * Compatibility wrapper function for assertSame
  *
  * @param mixed $first

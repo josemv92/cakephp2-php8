@@ -774,10 +774,10 @@ class ModelValidationTest extends BaseModelTest {
  * Test that missing validation methods trigger errors in development mode.
  * Helps to make development easier.
  *
- * @expectedException PHPUnit\Framework\Error
  * @return void
  */
 	public function testMissingValidationErrorTriggering() {
+		$this->expectException('\PHPUnit\Framework\Error');
 		Configure::write('debug', 2);
 
 		$TestModel = new ValidationTest1();
@@ -2228,11 +2228,11 @@ class ModelValidationTest extends BaseModelTest {
 /**
  * Test that type hint exception is thrown
  *
- * @expectedException PHPUnit\Framework\Error
  * @return void
  * @throws PHPUnit_Framework_Error
  */
 	public function testValidatorTypehintException() {
+		$this->expectException('\PHPUnit\Framework\Error');
 		try {
 			new ModelValidator('asdasds');
 			$this->fail('No exeption raised');
