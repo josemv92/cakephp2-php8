@@ -248,7 +248,7 @@ if (!function_exists('pluginSplit')) {
  * @link https://book.cakephp.org/2.0/en/core-libraries/global-constants-and-functions.html#pluginSplit
  */
 	function pluginSplit($name, $dotAppend = false, $plugin = null) {
-		if (strpos($name, '.') !== false) {
+		if (strpos((string) $name, '.') !== false) {
 			$parts = explode('.', $name, 2);
 			if ($dotAppend) {
 				$parts[0] .= '.';
@@ -357,12 +357,12 @@ if (!function_exists('env')) {
 				$name = env('SCRIPT_NAME');
 				$filename = env('SCRIPT_FILENAME');
 				$offset = 0;
-				if (!strpos($name, '.php')) {
+				if (!strpos((string) $name, '.php')) {
 					$offset = 4;
 				}
-				return substr($filename, 0, -(strlen($name) + $offset));
+				return substr((string) $filename, 0, -(strlen((string) $name) + $offset));
 			case 'PHP_SELF':
-				return str_replace(env('DOCUMENT_ROOT'), '', env('SCRIPT_FILENAME'));
+				return str_replace((string) env('DOCUMENT_ROOT'), '', (string) env('SCRIPT_FILENAME'));
 			case 'CGI_MODE':
 				return (PHP_SAPI === 'cgi');
 			case 'HTTP_BASE':

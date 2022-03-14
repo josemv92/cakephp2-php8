@@ -625,6 +625,7 @@ class ControllerTestCaseTest extends CakeTestCase {
 /**
  * Test that multiple calls to redirect in the same test method don't cause issues.
  *
+ * @doesNotPerformAssertions
  * @return void
  */
 	public function testTestActionWithMultipleRedirect() {

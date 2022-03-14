@@ -136,7 +136,7 @@ class Xml {
 		$hasDisable = function_exists('libxml_disable_entity_loader');
 		$internalErrors = libxml_use_internal_errors(true);
 		if ($hasDisable && !$options['loadEntities']) {
-			libxml_disable_entity_loader(true);
+			//libxml_disable_entity_loader(true);
 		}
 		$flags = LIBXML_NOCDATA;
 		if (!empty($options['parseHuge'])) {
@@ -153,7 +153,7 @@ class Xml {
 			$xml = null;
 		}
 		if ($hasDisable && !$options['loadEntities']) {
-			libxml_disable_entity_loader(false);
+			//libxml_disable_entity_loader(false);
 		}
 		libxml_use_internal_errors($internalErrors);
 		if ($xml === null) {

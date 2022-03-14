@@ -1049,6 +1049,7 @@ class TreeBehaviorNumberTest extends CakeTestCase {
 /**
  * Test deleting a record that doesn't exist.
  *
+ * @doesNotPerformAssertions
  * @return void
  */
 	public function testDeleteDoesNotExist() {

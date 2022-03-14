@@ -66,7 +66,7 @@ class CakeTestRunner {
  * This argument is ignored if >PHPUnit5.2.0
  * @return void
  */
-	public function doRun(PHPUnit_Framework_Test $suite, array $arguments = array(), $exit = true) {
+	public function run(PHPUnit_Framework_Test $suite, array $arguments = array(), $exit = true) {
 		if (isset($arguments['printer'])) {
 			static::$versionStringPrinted = true;
 		}
@@ -83,7 +83,7 @@ class CakeTestRunner {
 			}
 		}
 
-		$return = $this->runner->doRun($suite, $arguments, $exit);
+		$return = $this->runner->run($suite, $arguments, $exit);
 		$fixture->shutdown();
 		return $return;
 	}

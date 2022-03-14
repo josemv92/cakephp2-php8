@@ -1125,6 +1125,7 @@ class BehaviorCollectionTest extends CakeTestCase {
 /**
  * Test attach and detaching
  *
+ * @doesNotPerformAssertions
  * @return void
  */
 	public function testBehaviorAttachAndDetach() {

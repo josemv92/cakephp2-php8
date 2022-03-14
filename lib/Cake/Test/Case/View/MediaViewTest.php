@@ -118,6 +118,7 @@ class MediaViewTest extends CakeTestCase {
 /**
  * Test downloading files with UPPERCASE extensions.
  *
+ * @doesNotPerformAssertions
  * @return void
  */
 	public function testRenderUpperExtension() {

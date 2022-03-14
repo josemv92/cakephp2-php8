@@ -22,6 +22,8 @@
 App::uses('Inflector', 'Utility');
 App::uses('CakePlugin', 'Core');
 
+use PHPUnit\TextUI\ResultPrinter;
+
 /**
  * Abstract class for common CoverageReport methods.
  * Provides several template methods for custom output.
@@ -63,9 +65,9 @@ abstract class BaseCoverageReport {
  * Constructor
  *
  * @param array $coverage Array of coverage data from PHPUnit_Test_Result
- * @param CakeBaseReporter $reporter A reporter to use for the coverage report.
+ * @param ResultPrinter $reporter A reporter to use for the coverage report.
  */
-	public function __construct($coverage, CakeBaseReporter $reporter) {
+	public function __construct($coverage, ResultPrinter $reporter) {
 		$this->_rawCoverage = $coverage;
 		$this->_setParams($reporter);
 	}
@@ -73,10 +75,10 @@ abstract class BaseCoverageReport {
 /**
  * Pulls params out of the reporter.
  *
- * @param CakeBaseReporter $reporter Reporter to suck params out of.
+ * @param ResultPrinter $reporter Reporter to suck params out of.
  * @return void
  */
-	protected function _setParams(CakeBaseReporter $reporter) {
+	protected function _setParams(ResultPrinter $reporter) {
 		if ($reporter->params['app']) {
 			$this->appTest = true;
 		}

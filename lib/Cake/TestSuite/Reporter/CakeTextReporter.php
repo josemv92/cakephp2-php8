@@ -15,7 +15,6 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('CakeBaseReporter', 'TestSuite/Reporter');
 App::uses('TextCoverageReport', 'TestSuite/Coverage');
 
 /**
@@ -145,7 +144,7 @@ class CakeTextReporter extends CakeBaseReporter {
  * @return void
  */
 	public function testCaseList() {
-		$testCases = parent::testCaseList();
+		// $testCases = parent::testCaseList();
 		$app = $this->params['app'];
 		$plugin = $this->params['plugin'];
 

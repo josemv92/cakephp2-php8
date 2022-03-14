@@ -18,15 +18,13 @@ use PHPUnit\Util\Diff as PHPUnit_Util_Diff;
 use PHPUnit\Framework\TestSuite as PHPUnit_Framework_TestSuite;
 use PHPUnit\Framework\Test as PHPUnit_Framework_Test;
 
-App::uses('CakeBaseReporter', 'TestSuite/Reporter');
-
 /**
  * CakeHtmlReporter Reports Results of TestSuites and Test Cases
  * in an HTML format / context.
  *
  * @package       Cake.TestSuite.Reporter
  */
-class CakeHtmlReporter extends CakeBaseReporter {
+class CakeHtmlReporter {
 
 /**
  * The content buffer
@@ -92,7 +90,7 @@ class CakeHtmlReporter extends CakeBaseReporter {
  * @return void
  */
 	public function testCaseList() {
-		$testCases = parent::testCaseList();
+		// $testCases = parent::testCaseList();
 		$core = $this->params['core'];
 		$plugin = $this->params['plugin'];
 

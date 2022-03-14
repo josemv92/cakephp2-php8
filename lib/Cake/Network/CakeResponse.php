@@ -514,9 +514,9 @@ class CakeResponse {
 		if ($shouldSetLength && !$this->outputCompressed()) {
 			$offset = ob_get_level() ? ob_get_length() : 0;
 			if (ini_get('mbstring.func_overload') & 2 && function_exists('mb_strlen')) {
-				$this->length($offset + mb_strlen($this->_body, '8bit'));
+				$this->length($offset + mb_strlen((string) $this->_body, '8bit'));
 			} else {
-				$this->length($this->_headers['Content-Length'] = $offset + strlen($this->_body));
+				$this->length($this->_headers['Content-Length'] = $offset + strlen((string) $this->_body));
 			}
 		}
 	}
@@ -1102,7 +1102,7 @@ class CakeResponse {
  * @return bool
  */
 	public function outputCompressed() {
-		return strpos(env('HTTP_ACCEPT_ENCODING'), 'gzip') !== false
+		return strpos((string) env('HTTP_ACCEPT_ENCODING'), 'gzip') !== false
 			&& (ini_get("zlib.output_compression") === '1' || in_array('ob_gzhandler', ob_list_handlers()));
 	}
 
@@ -1164,7 +1164,7 @@ class CakeResponse {
 		$ifNoneMatchHeader = $request->header('If-None-Match');
 		$etags = array();
 		if (is_string($ifNoneMatchHeader)) {
-			$etags = preg_split('/\s*,\s*/', $ifNoneMatchHeader, null, PREG_SPLIT_NO_EMPTY);
+			$etags = preg_split('/\s*,\s*/', $ifNoneMatchHeader, -1, PREG_SPLIT_NO_EMPTY);
 		}
 		$modifiedSince = $request->header('If-Modified-Since');
 		$checks = array();
